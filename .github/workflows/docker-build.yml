@@ -17,7 +17,11 @@ jobs:
           password: ${{ secrets.DOCKER_TOKEN }}
 
       - name: Docker image build
-        run: docker build -t anilgadwal/nestjs-auth .
-
+        run: |
+          cd $GITHUB_WORKSPACE
+          docker build -t anilgadwal/nestjs-auth .
+        
       - name: Push docker image to dockerhub
-        run: docker push anilgadwal/nestjs-auth
+        run: |
+          cd $GITHUB_WORKSPACE
+          docker push anilgadwal/nestjs-auth
